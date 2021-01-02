@@ -20,7 +20,7 @@ email.send_keys(email)
 password.send_keys(password)
 log_button.click()
 
-url = input("\nEnter the link:")
+url = 'https://m.facebook.com/DeveloperStudentClubDHASuffaUniversity/photos/a.1451042185216529/2839108256409908/'
 
 #loading fb post
 driver.get(url)
@@ -28,6 +28,18 @@ driver.get(url)
 #Post_Like
 like_button = driver.find_element_by_css_selector("div[data-sigil='ufi-inline-actions'] div a")
 like_button.click()
+
+#Comment
+comm_Text = "Great instructors and great experience. Thankyou DSC-DSU for giving us this great opportunity to learn some new skills. Bootcamp was well managed."
+comment = comm_Text.split(".")
+for i in comment:
+     comment_Area = WebDriverWait(driver, 10).until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, "div.mentions textarea#composerInput")))
+        comment_Area.send_keys(i)
+
+        post_Button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, 'button[data-sigil="touchable composer-submit"]')))
+        post_Button.click()
 
 #sharing_Post
 share_button = driver.find_element_by_css_selector("div[data-sigil='ufi-inline-actions'] div a[data-sigil='share-popup']")
